@@ -15,7 +15,7 @@ export const HeroCard = ({
   //Creo una constante para almacenar el src de mi imagen que lo tengo en la carpeta assets, así que sólo cambia el id de la imagen que coincide con el del array (getHeroesByPublish)//
   const heroImageUrl = `/assets/heroes/${id}.jpg`;
   return (
-    <div className="col ">
+    <div className="col">
       <div className="card ">
         <div className="row no-gutters ">
           <div className="col-4">

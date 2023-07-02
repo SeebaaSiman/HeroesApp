@@ -4,8 +4,8 @@ import { AuthContext } from "../../auth";
 
 export const Navbar = () => {
   //Traigo aquí por contexto el user, será user. name para saber el nombre del user//
-//También extraigo logout//
-  const { user,logout } = useContext(AuthContext);
+  //También extraigo logout//
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const onLogout = () => {
     logout(); //disparo la fx logout desde AuthProvider//
@@ -15,7 +15,7 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
+    <nav className=" navbar navbar-expand-sm navbar-dark bg-dark p-2">
       <Link className="navbar-brand" to="/">
         Asociaciones
       </Link>
@@ -49,7 +49,7 @@ export const Navbar = () => {
       </div>
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
         <ul className="navbar-nav ml-auto">
-          <span className="nav-item nav-link text-primary"> { user?.name } </span>
+          <span className="nav-item nav-link text-primary"> {user?.name} </span>
           <button className="nav-item nav-link btn" onClick={onLogout}>
             Logout
           </button>
