@@ -13,7 +13,7 @@ export const HeroCards = ({
   characters,
 }) => {
   //Creo una constante para almacenar el src de mi imagen que lo tengo en la carpeta assets, así que sólo cambia el id de la imagen que coincide con el del array (getHeroesByPublish)//
-  const heroImageUrl = `/assets/heroes/${id}.jpg`;
+  const heroImageUrl = `./../../../assets/heroes/${id}.jpg`;
   return (
     <Book className=" animate__animated animate__jello">
       <img src={heroImageUrl} alt={superhero} />
