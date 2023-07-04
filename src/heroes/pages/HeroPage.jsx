@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { getHeroesById } from "../helpers";
+import { styled } from "styled-components";
+import { device } from "../../ui/StyleGlobal";
 
 export const HeroPage = () => {
   //Aquí desestructuro el nombre de la referencia a los params que le dí en heroesRouters, con hero/:id//
@@ -19,37 +21,100 @@ export const HeroPage = () => {
     return <Navigate to="/dc" />;
   }
   return (
-    <div className="row mt-5">
+    <>
+      <ButtonBack
+        // className="btn btn-outline-primary"
+        onClick={onNavigateBack}
+      >
+        Back
+      </ButtonBack>
 
-      <div className="col-4 animate__animated animate__fadeInLeft">
-        <img
-          src={`/assets/heroes/${id}.jpg`}
-          alt={hero.superhero}
-          className="img-thumbnail"/>
-      </div>
+      <HeroPageContainer>
+        <CardImage className="animate__animated animate__fadeInLeft">
+          <img src={`/assets/heroes/${id}.jpg`} alt={hero.superhero} />
+        </CardImage>
 
-      <div className="col-8 animate__animated animate__fadeInRight">
-        <h3>{hero.superhero}</h3>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <b>Alter ego:</b>
-            {hero.alter_ego}
-          </li>
-          <li className="list-group-item">
-            <b>Publisher:</b>
-            {hero.publisher}
-          </li>
-          <li className="list-group-item">
-            <b>First appearance:</b>
-            {hero.first_appearance}
-          </li>
-        </ul>
-        <h5 className="mt-3">Characters</h5>
-        <p>{hero.characters}</p>
-        <button className="btn btn-outline-primary" onClick={onNavigateBack}>
-          Back
-        </button>
-      </div>
-    </div>
+        <ContentContainer className="animate__animated animate__fadeInRight">
+          <h3>{hero.superhero}</h3>
+          <ul>
+            <li>
+              <b>Alter ego:</b>
+              {hero.alter_ego}
+            </li>
+            <li>
+              <b>Publisher:</b>
+              {hero.publisher}
+            </li>
+            <li>
+              <b>First appearance:</b>
+              {hero.first_appearance}
+            </li>
+          </ul>
+          <h5>Characters</h5>
+          <p>{hero.characters}</p>
+        </ContentContainer>
+      </HeroPageContainer>
+    </>
   );
 };
+const HeroPageContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  @media ${device.md} {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+`;
+const ButtonBack = styled.button`
+  margin: 1rem;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff5252;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #fff;
+    color: #ff5252;
+    border: 2px solid #ff5252;
+    box-shadow: 5px 5px 0px #ff5252;
+  }
+  &:active {
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+`;
+const CardImage = styled.div`
+  margin: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border-radius: 10px;
+  background: rgb(236, 236, 236);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media ${device.md} {
+    margin-left: 0;
+    margin-right: 0;
+    width: 35%;
+  }
+  img {
+    object-fit: cover;
+  }
+`;
+const ContentContainer = styled(CardImage)`
+  flex-direction: column;
+`;
