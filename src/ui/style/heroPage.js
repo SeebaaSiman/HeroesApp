@@ -1,15 +1,6 @@
 import { styled } from "styled-components";
 import { device, BoxStyle } from "./StyleGlobal";
 
-export const HeroPageContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  @media ${device.md} {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-`;
 export const ButtonBack = styled.button`
   margin: 1rem;
   display: inline-block;
@@ -36,11 +27,21 @@ export const ButtonBack = styled.button`
     transform: translateY(4px);
   }
 `;
+
+export const HeroPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
+  @media ${device.md} {
+    flex-direction: row;
+    align-items: start;
+    gap:0;
+  }
+`;
 export const CardImage = styled.div`
-  margin: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+ width: 80%;
   border-radius: 10px;
   background: rgb(236, 236, 236);
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
@@ -48,17 +49,26 @@ export const CardImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media ${device.md} {
-    margin-left: 0;
-    margin-right: 0;
-    width: 35%;
-  }
   img {
+    width:100%;
     box-shadow: ${BoxStyle.boxShadow};
-
     object-fit: cover;
   }
 `;
 export const ContentContainer = styled(CardImage)`
+padding: 1rem;
   flex-direction: column;
-`;
+  `;
+export const HeaderContent = styled.div`
+display:flex;
+flex-direction: column;
+`
+export const ContainerLeft = styled.div`
+gap:1rem;
+display: flex;
+justify-content: start;
+align-items: center;
+flex-direction: column;
+@media ${device.md} {
+  width:50%;
+}`

@@ -1,3 +1,3 @@
-export * from './getHeroesById';
-export * from './getHeroesByPublisher';
-export * from './getHeroesByName';
+export * from './getDataByName';
+export * from './getSuperheroesData';
+export * from './getSuperheroNamesByPublisher';

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { Link, NavLink } from "react-router-dom";
-import { BoxStyle } from "./StyleGlobal";
+import { BoxStyle, device } from "./StyleGlobal";
 
 
 export const NavBarContainer = styled.div`
@@ -80,12 +80,16 @@ export const Button = styled.button`
     }
   }
 `;
+export const HeaderUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media ${device.sm}{
+    flex-direction: row;
+  }
+`;
 export const User = styled.h5`
   margin-left: 6px;
   color: #ff5252;
   transform: skewY(-4deg);
   text-shadow: white 1px 1px, cyan 2px 2px;
-`;
-export const HeaderUser = styled.div`
-  display: flex;
 `;

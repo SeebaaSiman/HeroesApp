@@ -21,13 +21,12 @@ export const BoxStyle = {
     'rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px'
 };
 // box-shadow: ${BoxStyle.boxShadow};
-
 export const StyleGlobal = createGlobalStyle`
 *,*::before,*::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    user-select:none;
+    /* user-select:none; */
     overflow-x: hidden;
 
 }
@@ -51,3 +50,4 @@ h5{
     }
     `} */
 `
+  // const heroImageUrl = `./../../../assets/heroes/${id}.jpg`;

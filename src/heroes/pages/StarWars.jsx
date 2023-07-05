@@ -1,9 +1,9 @@
 import { HeroesList } from "../components/HeroesList";
 
-export const DCPage = () => {
+export const StarWars = () => {
   return (
     <>
-      <HeroesList publisher={"DC Comics"} />
+      <HeroesList publisher={"Star wars"} />
     </>
   );
 };

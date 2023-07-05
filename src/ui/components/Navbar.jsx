@@ -22,7 +22,7 @@ export const Navbar = () => {
         <LinksContainer>
           <NavLinks to="/marvel">Marvel</NavLinks>
           <NavLinks to="/dc">DC</NavLinks>
-          <NavLinks to="/other">OTHER</NavLinks>
+          <NavLinks to="/star-wars">Star Wars</NavLinks>
           <NavLinks to="/search">Search</NavLinks>
         </LinksContainer>
       </Header>
