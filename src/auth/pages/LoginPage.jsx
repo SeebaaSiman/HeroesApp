@@ -1,7 +1,16 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context";
-import "./loginstyle.css";
+import {
+  BtnLogin,
+  ErrorLogin,
+  FieldLogin,
+  FormLogin,
+  HeaderLogin,
+  InputLogin,
+  PageContainer,
+} from "../../ui/style/loginPage";
+
 export const LoginPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
@@ -10,6 +19,7 @@ export const LoginPage = () => {
     setInputValue(e.target.value);
     setError(false);
   };
+
   //Llamo al contexto y busco la función login y del login busco el authContext//
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -31,35 +41,33 @@ export const LoginPage = () => {
     }
   };
   return (
-    <div className="container-login">
-      <form className={`form-login ${error ? "shake-animation" : ""}`}>
-        <p className="heading-login">Login</p>
+    <PageContainer>
+      <FormLogin className={`${error ? "shake-animation" : ""}`}>
+        <HeaderLogin>Login</HeaderLogin>
 
-        <div className="field-login">
+        <FieldLogin>
           <span>@</span>
-          <input
+          <InputLogin
             autocomplete="off"
             placeholder="Username"
-            className={`input-field-login ${error ? "shake-animation" : ""}`}
+            className={`${error ? "shake-animation" : ""}`}
             type="text"
             value={inputValue}
             onChange={handleChange}
           />
-        </div>
+        </FieldLogin>
         {error ? (
-          <h6 className={`error-login ${error ? "shake-animation" : ""}`}>
+          <ErrorLogin className={`${error ? "shake-animation" : ""}`}>
             {errorInfo}
-          </h6>
+          </ErrorLogin>
         ) : null}
-        <div className="btn-login">
-          <button
-            className={`button1 ${error ? "shake-animation" : ""}`}
-            onClick={onLogin}
-          >
-            Login
-          </button>
-        </div>
-      </form>
-    </div>
+        <BtnLogin
+          className={`${error ? "shake-animation" : ""}`}
+          onClick={onLogin}
+        >
+          Login
+        </BtnLogin>
+      </FormLogin>
+    </PageContainer>
   );
 };

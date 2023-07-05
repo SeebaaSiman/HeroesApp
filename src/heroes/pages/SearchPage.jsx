@@ -1,8 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useForm } from "../../hooks/useForm";
 import queryString from "query-string";
+import { useForm } from "../../hooks/useForm";
 import { getHeroesByName } from "../helpers/getHeroesByName";
-import { HeroCard } from "../components/HeroCard";
+import { HeroCards } from "../components/HeroCards";
+import {
+  ButtonBack,
+  FieldContainer,
+  Inupt,
+  Label,
+  SearchPageContainer,
+} from "../../ui/style/search";
 
 export const SearchPage = () => {
   const navigate = useNavigate(); //Hook para obtener la navegación//
@@ -24,30 +31,32 @@ export const SearchPage = () => {
     navigate(`?q=${searchText}`); //Estipulo el query parámetro. Puedo ponerle .toLowerCase().trim() para ponerlo en minúsculas y sacarle los espacios//
   };
   return (
-    <>
+    <SearchPageContainer>
       <h1>Search</h1>
       <hr />
       <div className="row">
-        <div className="col-5">
-          <h4>Searching</h4>
-          <hr />
+        <div className="col-4">
           <form onSubmit={onSearchSubmit}>
-            <input
-              type="text"
-              placeholder="Search a hero"
-              className="form-control"
-              name="searchText"
-              autoComplete="off"
-              value={searchText}
-              onChange={onInputChange}
-            />
-            <button className="btn btn-outline-primary mt-2">Search</button>
+            <FieldContainer className="form__group field">
+              <Inupt
+                type="text"
+                className="form__field"
+                placeholder="Search a hero"
+                required=""
+                name="searchText"
+                autoComplete="off"
+                value={searchText}
+                onChange={onInputChange}
+              />
+              <Label for="searchText" className="form__label">
+                Search
+              </Label>
+            </FieldContainer>
+
+            <ButtonBack>Search</ButtonBack>
           </form>
         </div>
-        <div className="col-7">
-          <h4>Results</h4>
-          <hr />
-
+        <div className="col-8">
           {q === "" ? ( //Si el query es exactamente un string vacío entonces...//
             <div className="alert alert-primary">Search a hero</div>
           ) : (
@@ -59,10 +68,10 @@ export const SearchPage = () => {
             )
           )}
           {heroes.map((hero) => (
-            <HeroCard key={hero.id} {...hero} />
+            <HeroCards key={hero.id} {...hero} />
           ))}
         </div>
       </div>
-    </>
+    </SearchPageContainer>
   );
 };
