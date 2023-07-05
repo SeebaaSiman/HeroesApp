@@ -72,7 +72,7 @@ const ButtonBack = styled.button`
   margin: 1rem;
   display: inline-block;
   padding: 10px 20px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;

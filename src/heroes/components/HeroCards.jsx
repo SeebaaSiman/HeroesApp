@@ -37,6 +37,7 @@ export const HeroCards = ({
 };
 const Book = styled.div`
   position: relative;
+  overflow: hidden;
   margin: 0.2rem;
   border-radius: 10px;
   width: 220px;

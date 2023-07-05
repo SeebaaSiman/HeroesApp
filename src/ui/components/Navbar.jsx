@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth";
 import { styled } from "styled-components";
+import { BoxStyle } from "../StyleGlobal";
 
 export const Navbar = () => {
   //Traigo aquí por contexto el user, será user. name para saber el nombre del user//
@@ -18,7 +19,7 @@ export const Navbar = () => {
   return (
     <NavBarContainer>
       <Header>
-        <Links to="/">Asociaciones</Links>
+        {/* <Links to="/">Asociaciones</Links> */}
         <LinksContainer>
           <NavLinks to="/marvel">Marvel</NavLinks>
           <NavLinks to="/dc">DC</NavLinks>
@@ -28,8 +29,13 @@ export const Navbar = () => {
       </Header>
 
       <Footer>
-        <span>User login: {user?.name}</span>
-        <Button onClick={onLogout}>Logout</Button>
+        <HeaderUser>
+          <h5>User login:</h5>
+          <User>{user?.name}</User>
+        </HeaderUser>
+        <Button onClick={onLogout}>
+          <span>Logout</span>
+        </Button>
       </Footer>
     </NavBarContainer>
   );
@@ -37,6 +43,8 @@ export const Navbar = () => {
 
 const NavBarContainer = styled.div`
   background-color: #222;
+  border-radius: 0 0 10px 10px;
+  box-shadow: ${BoxStyle};
   font-size: 1.2rem;
 `;
 const Header = styled.div`
@@ -72,25 +80,50 @@ const Footer = styled.div`
     color: #fff;
   }
 `;
+
 const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  cursor: pointer;
-  width: 150px;
-  height: 50px;
-  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
-  border-radius: 30px;
-  border: 1px solid #8f9092;
-  transition: all 0.2s ease-in-out;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #606060;
-  text-shadow: 0 1px #fff;
-  &:hover {
-    box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
-      0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
+  padding: 0.1em 0.25em;
+  width: 13em;
+  height: 4.2em;
+  background-color: #212121;
+  border: 0.08em solid #fff;
+  border-radius: 0.3em;
+  font-size: 12px;
+  span {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0.4em;
+    width: 8.25em;
+    height: 2.5em;
+    background-color: #212121;
+    border-radius: 0.2em;
+    font-size: 1.5em;
+    color: #ffff;
+    border: 0.08em solid #ff5252;
+    box-shadow: 0 0.4em 0.1em 0.019em #ff5252;
+    &:hover {
+      color: #ff5252;
+      transition: all 0.5s;
+      transform: translate(0, 0.4em);
+      box-shadow: 0 0 0 0 #ff5252;
+    }
+    &:not(hover) {
+      transition: all 1s;
+    }
+    &:active {
+      background-color: #fcf414;
+      box-shadow: none;
+    }
   }
+`;
+const User = styled.h5`
+  margin-left: 6px;
+  color: #ff5252;
+  transform: skewY(-4deg);
+  text-shadow: white 1px 1px, cyan 2px 2px;
+`;
+const HeaderUser = styled.div`
+  display: flex;
 `;

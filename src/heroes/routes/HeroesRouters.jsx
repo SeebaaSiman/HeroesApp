@@ -2,12 +2,14 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Navbar } from "../../ui";
 import { DCPage, HeroPage, MarvelPage, SearchPage } from "../pages";
 import { OtherPage } from "../pages/OtherPage";
+import { StyleGlobal } from "../../ui/StyleGlobal";
 
 export const HeroesRouters = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <StyleGlobal />
+      <>
         {/* Aquí en las routes, cada route es una ruta que al poner /path con su path lleva al element pág  */}
         <Routes>
           <Route path="marvel" element={<MarvelPage />} />
@@ -19,7 +21,7 @@ export const HeroesRouters = () => {
 
           <Route path="/" element={<Navigate to="/dc" />} />
         </Routes>
-      </div>
+      </>
     </>
   );
 };

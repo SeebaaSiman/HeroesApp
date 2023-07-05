@@ -39,7 +39,9 @@ html{
     width: 0;
     display: none;
   }
-
+h5{
+  color:white;
+}
 
   /* ${props => props.deviceType === "desktop" && `
     * {
