@@ -1,4 +1,8 @@
 import { createGlobalStyle } from "styled-components";
+import ComicBookBoldItalic from './../fonts/Comic Book Bold Italic.otf';
+import ComicBookBold from './../fonts/Comic Book Bold.otf';
+import ComicBookItalic from './../fonts/Comic Book Italic.otf';
+import ComicBook from './../fonts/Comic-Book.otf';
 
 export const device = {
   sm: `(min-width: 480px)`,
@@ -6,13 +10,6 @@ export const device = {
   lg: `(min-width: 1024px)`,
   xl: `(min-width: 1200px)`,
 };
-//! Aplicación de device
-/* h1 {
-    font-size: 2rem;
-    ${device.md} {
-      font-size: 3rem;
-    }
-  } */
 export const BoxStyle = {
   boxShadow: 'rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,' +
     'rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,' +
@@ -20,34 +17,64 @@ export const BoxStyle = {
     'rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,' +
     'rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px'
 };
-// box-shadow: ${BoxStyle.boxShadow};
+
 export const StyleGlobal = createGlobalStyle`
+@font-face {
+    font-family: 'Comic Book Bold Italic';
+    src: url(${ComicBookBoldItalic}) format('woff');
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Comic Book Bold';
+    src: url(${ComicBookBold}) format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Comic Book Italic';
+    src: url(${ComicBookItalic}) format('woff');
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Comic";
+    src: url(${ComicBook}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 *,*::before,*::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* user-select:none; */
     overflow-x: hidden;
+    font-family:"Comic";
 
 }
 html{
     background-color: #e2dfdd;
     color: #000;
-    /* font-family: "Oxygen" ,'Bebas Neue',"poppins",sans-serif; */
+    text-transform: uppercase;
+    font-family:"Comic";
 }
 
 ::-webkit-scrollbar {
     width: 0;
     display: none;
   }
-h5{
-  color:white;
-}
+h5,p,ul,li, h4,h6,h1,h2,h3,button,div,span,b ,input{
+  font-family:"Comic";
 
-  /* ${props => props.deviceType === "desktop" && `
-    * {
-      cursor: none;
-    }
-    `} */
-`
+  /* color:white; */
+}
+`;
+
+/* ${props => props.deviceType === "desktop" && `
+  * {
+    cursor: none;
+  }
+  `} */
   // const heroImageUrl = `./../../../assets/heroes/${id}.jpg`;

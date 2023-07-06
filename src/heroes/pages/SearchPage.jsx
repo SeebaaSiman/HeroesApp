@@ -87,7 +87,7 @@ export const SearchPage = () => {
         </div>
         <div className="col-7 animate__animated animate__fadeInRight d-flex flex-wrap">
           {q === "" ? ( //Si el query es exactamente un string vacío entonces...//
-            <div className="alert alert-primary">Search a hero o villain</div>
+            <p className="alert alert-primary">Search a hero o villain</p>
           ) : (
             //Si heroes es igual a 0 significa que no encontró nada y será true no hero with ese q//
             heroes &&

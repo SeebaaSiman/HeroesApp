@@ -24,6 +24,8 @@ export const LinksContainer = styled.div`
 `;
 
 export const NavLinks = styled(NavLink)`
+  font-family:"Comic";
+
   color: #fff;
   text-decoration: none;
   &:hover {
@@ -86,8 +88,11 @@ export const HeaderUser = styled.div`
   @media ${device.sm}{
     flex-direction: row;
   }
+  h5{
+    color:white;
+  }
 `;
-export const User = styled.h5`
+export const User = styled.h6`
   margin-left: 6px;
   color: #ff5252;
   transform: skewY(-4deg);

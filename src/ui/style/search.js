@@ -108,16 +108,13 @@ const showIn = keyframes`
   transform: translateY(0);
 }`
 export const DropdownContent = styled.ul`
-/* display: none;
-  position: absolute; */
-  /* top: 100%;
-  left: 0; */
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 8px;
   animation: ${showIn} 0.3s ease-in-out;
   li {
+
   padding: 4px 0;
   &:hover {
   background-color: #ddd;
