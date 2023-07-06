@@ -7,13 +7,14 @@ import {
   Inupt,
   Label,
   SearchPageContainer,
+  DropdownContent,
 } from "../../ui/style/search";
-import { HeroCard } from "../components/HeroCard";
 import { useGetHeroPage } from "../hooks/useGetHeroPage";
+import { HeroCardSearch } from "../components/HeroCardSearch";
+import { optionsSearch } from "../data/optionsSearch";
 
 export const SearchPage = () => {
   const navigate = useNavigate(); //Hook para obtener la navegación//
-
   const location = useLocation(); //Hook que me deja ver la dirección en donde estamos (path, query , search, etc)//
 
   const { q = "" } = queryString.parse(location.search); //parseo la propiedad location.search que extraigo del useLocation, para saber el query "?q=ddsadasda" de esta manera separa cada una de las piezas, como el q , asc, etc//
@@ -21,10 +22,18 @@ export const SearchPage = () => {
   //Desestructuro para recibir siempre la q , si no viene tiene como valor default un string vacío//
 
   const { hero } = useGetHeroPage(q); // Le envío la búsqueda para que me arroje un array con los personajes que coincidan con la búsqueda
-
-  const { searchText, onInputChange } = useForm({
-    searchText: q,
-  }); //Uso este custom hook para usar el value searchText y usar la fx onInputChange para que se pueda cambiar el input al escribir//
+  const options = optionsSearch;
+  const initialForm = {
+    searchText: "",
+  };
+  const {
+    searchText,
+    onResetForm,
+    onInputChange,
+    showSuggestions,
+    suggestions,
+    onSelectSuggestion,
+  } = useForm(initialForm, options); //Uso este custom hook para usar el value searchText y usar la fx onInputChange para que se pueda cambiar el input al escribir//
 
   const onSearchSubmit = (event) => {
     event.preventDefault(); //Prevenir el refrescado de la pág al enviar el form//
@@ -34,14 +43,17 @@ export const SearchPage = () => {
   };
 
   const heroes = hero?.data?.results;
-  console.log(hero, "hero obtenido de useGetHeroPage");
-  console.log(heroes, "depurado");
+
   return (
     <SearchPageContainer>
-      <h1 className="animate__animated animate__fadeInUp">Search</h1>
+      <div className="d-flex justify-content-between align-content-center">
+        <h1 className="animate__animated animate__fadeInUp">Search</h1>
+        <ButtonBack onClick={onResetForm}>Clear</ButtonBack>
+      </div>
+
       <hr />
       <div className="row">
-        <div className="col-4 animate__animated animate__fadeInLeft">
+        <div className="col-5 animate__animated animate__fadeInLeft">
           <form onSubmit={onSearchSubmit}>
             <FieldContainer className="form__group field">
               <Inupt
@@ -54,15 +66,26 @@ export const SearchPage = () => {
                 value={searchText}
                 onChange={onInputChange}
               />
-              <Label for="searchText" className="form__label">
+              <Label htmlFor="searchText" className="form__label">
                 Search
               </Label>
+              {showSuggestions && (
+                <DropdownContent>
+                  {suggestions?.map((suggestion, index) => (
+                    <li
+                      key={index}
+                      onClick={() => onSelectSuggestion(suggestion)}
+                    >
+                      {suggestion}
+                    </li>
+                  ))}
+                </DropdownContent>
+              )}
             </FieldContainer>
-
-            <ButtonBack>Search</ButtonBack>
           </form>
+          <ButtonBack onClick={onSearchSubmit}>Search</ButtonBack>
         </div>
-        <div className="col-8 animate__animated animate__fadeInRight">
+        <div className="col-7 animate__animated animate__fadeInRight d-flex flex-wrap">
           {q === "" ? ( //Si el query es exactamente un string vacío entonces...//
             <div className="alert alert-primary">Search a hero o villain</div>
           ) : (
@@ -75,7 +98,9 @@ export const SearchPage = () => {
             )
           )}
           {heroes &&
-            heroes?.map((hero) => <HeroCard key={hero.id} results={heroes} />)}
+            heroes?.map((hero, index) => (
+              <HeroCardSearch key={index} {...hero} />
+            ))}
         </div>
       </div>
     </SearchPageContainer>

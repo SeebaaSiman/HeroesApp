@@ -24,6 +24,6 @@ export const superheroesPage = {
   'Wolverine'
  ],
  starwars: [
-  "Vader", "Maul", "Yoda"
+  "Vader", "Skywalker", "Yoda", "Maul",
  ]
 };

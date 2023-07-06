@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 
 export const SearchPageContainer = styled.div`
   margin: 1rem;
@@ -42,7 +42,8 @@ export const Inupt = styled.input`
   border-bottom: 2px solid #9b9b9b;
   outline: 0;
   font-size: 17px;
-  color: #ff5252;
+  caret-color: #38caef;
+  color:#ff5252;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -97,3 +98,29 @@ export const Label = styled.label`
     border-image-slice: 1;
   }
 `;
+const showIn = keyframes`
+0% {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+100% {
+  opacity: 1;
+  transform: translateY(0);
+}`
+export const DropdownContent = styled.ul`
+/* display: none;
+  position: absolute; */
+  /* top: 100%;
+  left: 0; */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  animation: ${showIn} 0.3s ease-in-out;
+  li {
+  padding: 4px 0;
+  &:hover {
+  background-color: #ddd;
+}
+}
+`

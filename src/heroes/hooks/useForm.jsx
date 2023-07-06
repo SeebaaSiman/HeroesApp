@@ -1,25 +1,51 @@
-import { useState } from 'react';
+import { useState, useCallback } from "react";
+export const useForm = (initialForm, options = []) => {
+  const [formState, setFormState] = useState(initialForm);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
 
-export const useForm = ( initialForm = {} ) => {
-  
-    const [ formState, setFormState ] = useState( initialForm );
+  const onInputChange = useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      setFormState((prevFormState) => ({
+        ...prevFormState,
+        [name]: value,
+      }));
 
-    const onInputChange = ({ target }) => {
-        const { name, value } = target;
-        setFormState({
-            ...formState,
-            [ name ]: value
-        });
-    }
+      // Filtrar las sugerencias según el valor ingresado
+      if (value === "") {
+        setShowSuggestions(false);
+      } else {
+        const filteredSuggestions = options.filter((option) =>
+          option.toLowerCase().includes(value.toLowerCase())
+        );
+        setSuggestions(filteredSuggestions);
+        setShowSuggestions(true);
+      }
+    },
+    [options]
+  );
 
-    const onResetForm = () => {
-        setFormState( initialForm );
-    }
+  const onResetForm = useCallback(() => {
+    setFormState(initialForm);
+    setSuggestions([]);
+    setShowSuggestions(false);
+  }, [initialForm]);
 
-    return {
-        ...formState,
-        formState,
-        onInputChange,
-        onResetForm,
-    }
-}
+  const onSelectSuggestion = useCallback((value) => {
+    setFormState((prevFormState) => ({
+      ...prevFormState,
+      searchText: value, // Actualizar el valor del input con la sugerencia seleccionada
+    }));
+    setShowSuggestions(false);
+  }, []);
+
+  return {
+    ...formState,
+    showSuggestions,
+    suggestions,
+    onInputChange,
+    onResetForm,
+    onSelectSuggestion,
+  };
+};
