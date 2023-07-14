@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, styled } from "styled-components";
 import ComicBookBoldItalic from './../fonts/Comic Book Bold Italic.otf';
 import ComicBookBold from './../fonts/Comic Book Bold.otf';
 import ComicBookItalic from './../fonts/Comic Book Italic.otf';
@@ -17,7 +17,11 @@ export const BoxStyle = {
     'rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,' +
     'rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px'
 };
-
+export const PageContainer = styled.div`
+font-family:"Comic";
+min-height: 100vh;
+margin:1rem;
+`
 export const StyleGlobal = createGlobalStyle`
 @font-face {
     font-family: 'Comic Book Bold Italic';

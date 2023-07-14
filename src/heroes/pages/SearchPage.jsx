@@ -6,12 +6,12 @@ import {
   FieldContainer,
   Inupt,
   Label,
-  SearchPageContainer,
   DropdownContent,
 } from "../../ui/style/search";
 import { useGetHeroPage } from "../hooks/useGetHeroPage";
 import { HeroCardSearch } from "../components/HeroCardSearch";
 import { optionsSearch } from "../data/optionsSearch";
+import { PageContainer } from "../../ui/style/StyleGlobal";
 
 export const SearchPage = () => {
   const navigate = useNavigate(); //Hook para obtener la navegación//
@@ -45,7 +45,7 @@ export const SearchPage = () => {
   const heroes = hero?.data?.results;
 
   return (
-    <SearchPageContainer>
+    <PageContainer>
       <div className="d-flex justify-content-between align-content-center">
         <h1 className="animate__animated animate__fadeInUp">Search</h1>
         <ButtonBack onClick={onResetForm}>Clear</ButtonBack>
@@ -103,6 +103,6 @@ export const SearchPage = () => {
             ))}
         </div>
       </div>
-    </SearchPageContainer>
+    </PageContainer>
   );
 };

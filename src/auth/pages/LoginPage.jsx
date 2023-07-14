@@ -10,6 +10,7 @@ import {
   InputLogin,
   PageContainer,
 } from "../../ui/style/loginPage";
+import { Footer } from "../../heroes/footer";
 
 export const LoginPage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -33,6 +34,7 @@ export const LoginPage = () => {
       setErrorInfo("usename no puede comenzar con un número");
     } else {
       const lastPath = localStorage.getItem("lastPath") || "/"; //al hacer login buscará en el locastorrage lastPath y si es null irá a ' / '//
+
       //Uso la fx login//
       login(inputValue);
       navigate(lastPath, {
@@ -41,33 +43,36 @@ export const LoginPage = () => {
     }
   };
   return (
-    <PageContainer>
-      <FormLogin className={`${error ? "shake-animation" : ""}`}>
-        <HeaderLogin>Login</HeaderLogin>
+    <>
+      <PageContainer>
+        <FormLogin className={`${error ? "shake-animation" : ""}`}>
+          <HeaderLogin>Login</HeaderLogin>
 
-        <FieldLogin>
-          <span>@</span>
-          <InputLogin
-            autocomplete="off"
-            placeholder="Username"
+          <FieldLogin>
+            <span>@</span>
+            <InputLogin
+              autocomplete="off"
+              placeholder="Username"
+              className={`${error ? "shake-animation" : ""}`}
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+            />
+          </FieldLogin>
+          {error ? (
+            <ErrorLogin className={`${error ? "shake-animation" : ""}`}>
+              {errorInfo}
+            </ErrorLogin>
+          ) : null}
+          <BtnLogin
             className={`${error ? "shake-animation" : ""}`}
-            type="text"
-            value={inputValue}
-            onChange={handleChange}
-          />
-        </FieldLogin>
-        {error ? (
-          <ErrorLogin className={`${error ? "shake-animation" : ""}`}>
-            {errorInfo}
-          </ErrorLogin>
-        ) : null}
-        <BtnLogin
-          className={`${error ? "shake-animation" : ""}`}
-          onClick={onLogin}
-        >
-          Login
-        </BtnLogin>
-      </FormLogin>
-    </PageContainer>
+            onClick={onLogin}
+          >
+            Login
+          </BtnLogin>
+        </FormLogin>
+      </PageContainer>
+      <Footer />
+    </>
   );
 };

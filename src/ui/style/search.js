@@ -1,8 +1,5 @@
 import { keyframes, styled } from "styled-components";
 
-export const SearchPageContainer = styled.div`
-  margin: 1rem;
-`;
 export const ButtonBack = styled.button`
   margin: 1rem;
   display: inline-block;
